@@ -51,7 +51,9 @@ const createProduct = async (req, res, next) => {
 
 const findProducts = async (req, res, next) => {
   try {
-    const products = await Product.findAll();
+    const products = await Product.findAll({
+      include: ["Shops"],
+    });
 
     res.status(200).json({
       status: "Success",
@@ -70,6 +72,7 @@ const findProductById = async (req, res, next) => {
       where: {
         id: req.params.id,
       },
+      include: ["Shops"],
     });
 
     if (product === null) {
@@ -90,8 +93,17 @@ const findProductById = async (req, res, next) => {
   }
 };
 
-const UpdateProduct = async (req, res, next) => {
+const updateProduct = async (req, res, next) => {
   const { name, price, stock } = req.body;
+  const product = await Product.findOne({
+    where: {
+      name,
+    },
+  });
+
+  if (product) {
+    next(new ApiError("product name has already been taken", 400));
+  }
   try {
     const product = await Product.update(
       {
@@ -147,6 +159,6 @@ module.exports = {
   createProduct,
   findProducts,
   findProductById,
-  UpdateProduct,
+  updateProduct,
   deleteProduct,
 };

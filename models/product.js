@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       Product.hasMany(models.Shop, {
         foreignKey: {
           name: "productId",
-          allowNull: false,
+          allowNull: true,
         },
       });
     }

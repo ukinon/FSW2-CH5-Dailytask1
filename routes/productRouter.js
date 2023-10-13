@@ -10,7 +10,17 @@ const checkOwnership = require("../middlewares/checkOwnership");
 router.post("/", upload.single("image"), Product.createProduct);
 router.get("/", autentikasi, checkRole("Owner"), Product.findProducts);
 router.get("/:id", Product.findProductById);
-router.patch("/:id", autentikasi, checkOwnership, Product.UpdateProduct);
-router.delete("/:id", autentikasi, checkOwnership, Product.deleteProduct);
+router.patch(
+  "/:id",
+  autentikasi,
+  checkOwnership.checkOwnership,
+  Product.updateProduct
+);
+router.delete(
+  "/:id",
+  autentikasi,
+  checkOwnership.checkOwnership,
+  Product.deleteProduct
+);
 
 module.exports = router;

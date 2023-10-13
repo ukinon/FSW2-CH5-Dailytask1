@@ -5,7 +5,7 @@ const { User } = require("../models");
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    const newOwner = await User.bulkCreate(
+    await User.bulkCreate(
       [
         {
           name: "papi",
