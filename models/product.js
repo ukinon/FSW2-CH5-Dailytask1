@@ -19,9 +19,18 @@ module.exports = (sequelize, DataTypes) => {
   }
   Product.init(
     {
-      name: DataTypes.STRING,
-      price: DataTypes.FLOAT,
-      stock: DataTypes.INTEGER,
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      price: {
+        type: DataTypes.FLOAT,
+        allowNull: false,
+      },
+      stock: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
       imageUrl: {
         type: DataTypes.TEXT,
         defaultValue:
