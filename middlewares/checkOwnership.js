@@ -10,7 +10,7 @@ const checkOwnership = async (req, res, next) => {
     });
 
     if (!shop) {
-      next(new ApiError("you don't own a shop", 400));
+      next(new ApiError("you don't own a shop", 401));
     }
     next();
   } catch (err) {
@@ -27,7 +27,7 @@ const checkShopOwner = async (req, res, next) => {
     });
 
     if (shop.userId !== req.user.id) {
-      next(new ApiError(`you're not ${shop.name}'s owner`, 400));
+      next(new ApiError(`you're not ${shop.name}'s owner`, 401));
     }
     next();
   } catch (err) {
