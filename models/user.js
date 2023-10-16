@@ -16,9 +16,9 @@ module.exports = (sequelize, DataTypes) => {
         },
       });
 
-      User.hasMany(models.Shop, {
+      User.belongsTo(models.Shop, {
         foreignKey: {
-          name: "userId",
+          name: "shopId",
           allowNull: true,
         },
       });
@@ -41,6 +41,10 @@ module.exports = (sequelize, DataTypes) => {
       address: {
         type: DataTypes.STRING,
         allowNull: false,
+      },
+      shopId: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
       },
     },
     {

@@ -9,9 +9,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Shop.belongsTo(models.User, {
+      Shop.hasMany(models.User, {
         foreignKey: {
-          name: "userId",
+          name: "shopId",
           allowNull: false,
         },
       });
@@ -30,10 +30,6 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       productId: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
-      userId: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },

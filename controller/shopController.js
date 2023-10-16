@@ -1,4 +1,4 @@
-const { Shop, Product } = require("../models");
+const { Shop, Product, User } = require("../models");
 const ApiError = require("../utils/apiError");
 
 const createShop = async (req, res, next) => {
@@ -12,17 +12,31 @@ const createShop = async (req, res, next) => {
       },
     });
 
+    const findUserId = await User.findOne({
+      where: {
+        id: userId,
+      },
+    });
     console.log(productId);
 
     if (!productId) {
       next(new ApiError("Product doesn't exist", 400));
     }
 
+    if (findUserId.shopId !== null) {
+      next(new ApiError("This user already has a shop", 400));
+    }
+
     const newShop = await Shop.create({
       name,
       productId: productId.id,
-      userId,
+      include: ["Users"],
     });
+    findUserId.update({
+      shopId: newShop.id,
+    });
+
+    await findUserId.save();
 
     res.status(200).json({
       status: "Success",
@@ -38,7 +52,7 @@ const createShop = async (req, res, next) => {
 const findShops = async (req, res, next) => {
   try {
     const Shops = await Shop.findAll({
-      include: ["User", "Product"],
+      include: ["Users", "Product"],
     });
 
     res.status(200).json({

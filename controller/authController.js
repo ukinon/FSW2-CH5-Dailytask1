@@ -98,13 +98,10 @@ const login = async (req, res, next) => {
 
 const checkToken = async (req, res, next) => {
   try {
-    const user = await User.findOne({
-      where: { id: req.user.id },
-    });
     res.status(200).json({
       status: "success",
       data: {
-        user,
+        user: req.user,
       },
     });
   } catch (err) {
