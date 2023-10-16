@@ -5,7 +5,8 @@ const ApiError = require("../utils/apiError");
 
 const register = async (req, res, next) => {
   try {
-    const { name, email, password, confirmPassword, age, address } = req.body;
+    const { name, email, password, confirmPassword, age, address, shopId } =
+      req.body;
 
     // validasi untuk check apakah email nya udah ada
     const user = await Auth.findOne({
@@ -38,6 +39,7 @@ const register = async (req, res, next) => {
       name,
       address,
       age,
+      shopId,
     });
     await Auth.create({
       email,

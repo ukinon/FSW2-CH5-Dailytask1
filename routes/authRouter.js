@@ -3,8 +3,14 @@ const router = require("express").Router();
 const Auth = require("../controller/authController");
 
 const autentikasi = require("../middlewares/authenticate");
+const checkOwnership = require("../middlewares/checkOwnership");
 
-router.post("/register", Auth.register);
+router.post(
+  "/register",
+  autentikasi,
+  checkOwnership.checkShopOwnerByRequest,
+  Auth.register
+);
 router.post("/login", Auth.login);
 router.get("/", autentikasi, Auth.checkToken);
 

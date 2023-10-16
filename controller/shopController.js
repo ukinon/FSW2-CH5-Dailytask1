@@ -25,16 +25,16 @@ const createShop = async (req, res, next) => {
 
     if (findUserId.shopId !== null) {
       next(new ApiError("This user already has a shop", 400));
+    } else {
+      const newShop = await Shop.create({
+        name,
+        productId: productId.id,
+        include: ["Users"],
+      });
+      findUserId.update({
+        shopId: newShop.id,
+      });
     }
-
-    const newShop = await Shop.create({
-      name,
-      productId: productId.id,
-      include: ["Users"],
-    });
-    findUserId.update({
-      shopId: newShop.id,
-    });
 
     await findUserId.save();
 
