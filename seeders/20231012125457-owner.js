@@ -1,4 +1,3 @@
-const bcrypt = require("bcrypt");
 const { User } = require("../models");
 ("use strict");
 
@@ -54,35 +53,50 @@ module.exports = {
       return queryInterface.bulkInsert("Auths", [
         {
           email: "papi@gmail.com",
-          password: bcrypt.hashSync("bogor123", saltRounds),
+          password:
+            "$2a$10$YBdLRjQUf6tevvaPPjoE8usz8NThOWie.Y0nZc5vxHX8ARkb6OIeO",
+          confirmPassword:
+            "$2a$10$YBdLRjQUf6tevvaPPjoE8usz8NThOWie.Y0nZc5vxHX8ARkb6OIeO",
           userId: newOwner[0].id,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
           email: "pepe@gmail.com",
-          password: bcrypt.hashSync("tangerang123", saltRounds),
+          password:
+            "$2a$10$/6hr/RdXKLjWYEqVQjcS0O.jsXU1GxnZQipMS8mTX0YOeM3YYsika",
+          confirmPassword:
+            "$2a$10$/6hr/RdXKLjWYEqVQjcS0O.jsXU1GxnZQipMS8mTX0YOeM3YYsika",
           userId: newOwner[1].id,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
           email: "papa@gmail.com",
-          password: bcrypt.hashSync("jakarta123", saltRounds),
+          password:
+            "$2a$10$2M5Ett7asTU2VWg0D6oYQ.yoME4nXnMp2U4bJhrLF5AHfmXrLQyDG",
+          confirmPassword:
+            "$2a$10$2M5Ett7asTU2VWg0D6oYQ.yoME4nXnMp2U4bJhrLF5AHfmXrLQyDG",
           userId: newOwner[2].id,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
           email: "pepo@gmail.com",
-          password: bcrypt.hashSync("madura123", saltRounds),
+          password:
+            "$2a$10$Em.NlH7eZ87J8Oi/IoyuneG88S1QwdS3wD43FalxwgTrczMOJ2oZe",
+          confirmPassword:
+            "$2a$10$Em.NlH7eZ87J8Oi/IoyuneG88S1QwdS3wD43FalxwgTrczMOJ2oZe",
           userId: newOwner[3].id,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
           email: "papo@gmail.com",
-          password: bcrypt.hashSync("bandung123", saltRounds),
+          password:
+            "$2a$10$rkveFpivq9v0CIucbr1.EOJhUA0Ylw00eGUPDyOGcU/nVCjnt3ZxK",
+          confirmPassword:
+            "$2a$10$rkveFpivq9v0CIucbr1.EOJhUA0Ylw00eGUPDyOGcU/nVCjnt3ZxK",
           userId: newOwner[4].id,
           createdAt: new Date(),
           updatedAt: new Date(),
